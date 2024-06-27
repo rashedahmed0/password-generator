@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -7,57 +7,42 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-teal-950 flex justify-center items-center m-20">
-    <section class="w-[70%] pl-5  p-10">
-        <h1 class="text-3xl text-white font-semibold ">
+<body class="bg-teal-950 flex justify-center items-center min-h-screen p-4">
+    <section class="w-full max-w-xl p-5 bg-white rounded shadow-md">
+        <h1 class="text-3xl text-gray-800 font-semibold">
             Generate a
         </h1>
-        <h1 class="mb-4 text-emerald-600 text-3xl font-semibold  underline"> Random Password </h1>
-        <div class="mb-4 bg-white w-[70%] flex justify-between items-center text-lg font-normal px-3 py-2">
-            <input id="showPassword" class="outline-none"></input>
-            <img id="copy" class="w-[30px]" src="./images/copy.png">
+        <h1 class="mb-4 text-emerald-600 text-3xl font-semibold underline">Random Password</h1>
+        <div class="mb-4 flex justify-between items-center text-lg font-normal px-3 py-2 bg-gray-100 rounded">
+            <input id="showPassword" class="outline-none bg-transparent flex-grow" readonly>
+            <img id="copy" class="w-6 cursor-pointer" src="./images/copy.png" alt="Copy">
         </div>
-        <div id="generate" class="mb-4 flex py-2 w-[50%] justify-between px-3 items-center text-white bg-teal-400">
-            <p class="text-2xl ">Generate Password </p>
-            <img class="w-[25px]" src="./images/generate.png">
+        <div id="generate"
+            class="mb-4 flex py-2 justify-between px-3 items-center text-white bg-teal-500 rounded cursor-pointer">
+            <p class="text-2xl">Generate Password</p>
+            <img class="w-6" src="./images/generate.png" alt="Generate">
         </div>
-
     </section>
-
 
     <script>
         document.getElementById('generate').addEventListener('click', function () {
             const length = 12;
-            const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ12345678901234567890-_=+;:,./<>?';
+            const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_=+;:,./<>?';
             let Password = '';
             for (let i = 0; i < length; i++) {
-                Password += charset.charAt(Math.floor(Math.random() * charset.length))
+                Password += charset.charAt(Math.floor(Math.random() * charset.length));
             }
-            // console.log(Password);
             const showPassword = document.getElementById('showPassword');
             showPassword.value = Password;
-        })
+        });
 
         document.getElementById('copy').addEventListener('click', function () {
-
+            const showPassword = document.getElementById('showPassword');
             showPassword.select();
             document.execCommand("copy");
-
-        })
-        // function copyPassword() {
-        //     showPassword.select();
-        //     document.execCommand("copy");
-        
-
-        // }
+            alert("Password copied to clipboard!");
+        });
     </script>
-
-
-
-
-
-
-
 </body>
 
 </html>
